@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="BPELProcess"
+    targetNamespace="http://enterprise.netbeans.org/bpel/SinAPlusB/BPELProcess"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/SinAPlusB/BPELProcess">
+    <import namespace="http://j2ee.netbeans.org/wsdl/sinAplusB" location="sinAplusB.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/ArithmaticWebServiceServiceWrapper" location="Partners/ArithmaticWebService/ArithmaticWebServiceServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://src/" location="Partners/ArithmaticWebService/ArithmaticWebServiceService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/ScientificWebServiceServiceWrapper" location="Partners/ScientificWebService/ScientificWebServiceServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://src/" location="Partners/ScientificWebService/ScientificWebServiceService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="PartnerLink3" xmlns:tns="http://enterprise.netbeans.org/bpel/ScientificWebServiceServiceWrapper" partnerLinkType="tns:ScientificWebServiceLinkType" partnerRole="ScientificWebServiceRole"/>
+        <partnerLink name="PartnerLink2" xmlns:tns="http://enterprise.netbeans.org/bpel/ArithmaticWebServiceServiceWrapper" partnerLinkType="tns:ArithmaticWebServiceLinkType" partnerRole="ArithmaticWebServiceRole"/>
+        <partnerLink name="PartnerLink1" xmlns:tns="http://j2ee.netbeans.org/wsdl/sinAplusB" partnerLinkType="tns:sinAplusB1" myRole="sinAplusBPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="SinAplusBOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/sinAplusB" messageType="tns:sinAplusBOperationReply"/>
+        <variable name="SinOut" xmlns:tns="http://src/" messageType="tns:sinResponse"/>
+        <variable name="SinIn" xmlns:tns="http://src/" messageType="tns:sin"/>
+        <variable name="AdditionOut" xmlns:tns="http://src/" messageType="tns:additionResponse"/>
+        <variable name="AdditionIn" xmlns:tns="http://src/" messageType="tns:addition"/>
+        <variable name="SinAplusBOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/sinAplusB" messageType="tns:sinAplusBOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="PartnerLink1" operation="sinAplusBOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/sinAplusB" portType="tns:sinAplusBPortType" variable="SinAplusBOperationIn"/>
+        <assign name="Assign1">
+            <copy>
+                <from variable="SinAplusBOperationIn" part="partA"/>
+                <to>$AdditionIn.parameters/p1</to>
+            </copy>
+            <copy>
+                <from variable="SinAplusBOperationIn" part="partB"/>
+                <to>$AdditionIn.parameters/p2</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke1" partnerLink="PartnerLink2" operation="addition" xmlns:tns="http://src/" portType="tns:ArithmaticWebService" inputVariable="AdditionIn" outputVariable="AdditionOut"/>
+        <assign name="Assign2">
+            <copy>
+                <from>$AdditionOut.parameters/return</from>
+                <to>$SinIn.parameters/Input</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke2" partnerLink="PartnerLink3" operation="sin" xmlns:tns="http://src/" portType="tns:ScientificWebService" inputVariable="SinIn" outputVariable="SinOut"/>
+        <assign name="Assign3">
+            <copy>
+                <from>$SinOut.parameters/return</from>
+                <to variable="SinAplusBOperationOut" part="FinalOut"/>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="PartnerLink1" operation="sinAplusBOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/sinAplusB" portType="tns:sinAplusBPortType" variable="SinAplusBOperationOut"/>
+    </sequence>
+</process>

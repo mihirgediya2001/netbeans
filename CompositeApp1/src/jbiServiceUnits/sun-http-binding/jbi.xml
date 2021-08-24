@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://enterprise.netbeans.org/bpel/SinAPlusB/BPELProcess" xmlns:ns2="http://src/" xmlns:ns3="http://j2ee.netbeans.org/wsdl/sinAplusB" version="1.0">
+    <services binding-component="true">
+        <provides endpoint-name="ScientificWebServicePort" interface-name="ns2:ScientificWebService" service-name="ns2:ScientificWebServiceService"/>
+        <provides endpoint-name="ArithmaticWebServicePort" interface-name="ns2:ArithmaticWebService" service-name="ns2:ArithmaticWebServiceService"/>
+        <consumes endpoint-name="sinAplusBPort" interface-name="ns3:sinAplusBPortType" service-name="ns3:sinAplusBService"/>
+    </services>
+</jbi>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/ArithmaticService/ArithmaticWebServiceService?wsdl" uri="src/Partners/ArithmaticWebService/ArithmaticWebServiceService.wsdl"/>
+    <system systemId="http://localhost:8080/ArithmaticService/ArithmaticWebServiceService?xsd=1" uri="src/Partners/ArithmaticWebService/ArithmaticWebServiceService_xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ScientificService/ScientificWebServiceService?wsdl" uri="src/Partners/ScientificWebService/ScientificWebServiceService.wsdl"/>
+    <system systemId="http://localhost:8080/ScientificService/ScientificWebServiceService?xsd=1" uri="src/Partners/ScientificWebService/ScientificWebServiceService_xsd_1.xsd"/>
+</catalog>

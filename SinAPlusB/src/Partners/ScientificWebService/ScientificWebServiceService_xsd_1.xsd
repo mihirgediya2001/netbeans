@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.2_01-hudson-189-. --><xs:schema xmlns:tns="http://src/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://src/">
+
+<xs:element name="sin" type="tns:sin"></xs:element>
+
+<xs:element name="sinResponse" type="tns:sinResponse"></xs:element>
+
+<xs:complexType name="sin">
+<xs:sequence>
+<xs:element name="Input" type="xs:double"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sinResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:double"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+           
+   
+<!--    <xs:element name="Name">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="FName" type="xs:string" />
+                <xs:element name="MName" type="xs:string" />
+                <xs:element name="LName" type="xs:string" />
+                <xs:element name="Age" type="xs:int"/>
+            </xs:sequence>
+
+        </xs:complexType>
+    </xs:element>-->
+    
+<!--    <xs:element name="Name" type="myType" />
+    <xs:element name="MyData" type="myType" />
+     
+    <xs:complexType name="myType">
+        <xs:sequence>
+            <xs:element name="FName" type="xs:string" />
+            <xs:element name="MName" type="xs:string" />
+            <xs:element name="LName" type="xs:string" />
+            <xs:element name="Age" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>-->
+    
+    
+    
+    <xs:element name="RootElement">
+        <xs:complexType >
+            <xs:sequence>
+                <xs:element name="Name" type="myType" />
+                <xs:element name="DEP" type="myType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+     
+    <xs:complexType name="myType">
+        <xs:sequence>
+            <xs:element name="FName" type="xs:string" />
+            <xs:element name="MName" type="xs:string" />
+            <xs:element name="LName" type="xs:string" />
+            <xs:element name="Age" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+</xs:schema>
